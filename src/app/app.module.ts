@@ -3,16 +3,38 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HomepageComponent } from './component/homepage/homepage.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CardComponent } from './component/card/card.component';
+import { MatCardModule } from '@angular/material/card';
+import { SmartContractService } from './service/smart-contract/smart-contract.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomepageComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatCardModule,
+    
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync(),
+    SmartContractService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
