@@ -1,36 +1,54 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-        <mat-icon>train</mat-icon><span>RailRoad</span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
-        <mat-list>
-            <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Accueil</span></a>
-            <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Cartes à vendre</span></a>
-            <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Tickets à vendre</span></a>
-            <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
-        </mat-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-            <body>
-                <div *ngFor="let cardName of cardList | keyvalue" class="card-container">
-                    <mat-card *ngFor="let card of cardName.value" class="card">
-                      <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title>{{ card.name }}</mat-card-title>
-                        <mat-card-subtitle>{{ card.discountRate }}</mat-card-subtitle>
-                      </mat-card-header>
-                      <img mat-card-image [src]="card.image" alt="Photo of a Shiba Inu">
-                      <mat-card-content>
-                        {{ card.price }}
-                      </mat-card-content>
-                      <mat-card-actions>
-                        <button mat-button (click)="buyCard(true, card.name, card.id, card.price)">Buy</button>
-                      </mat-card-actions>
-                    </mat-card>
-                  </div>
-            </body>
-        </mat-sidenav-content>
-  </mat-sidenav-container>
+  <mat-toolbar-row>
+    <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+    <mat-icon>train</mat-icon><span>RailRoad</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
+    <mat-list>
+      <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
+      <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card
+          Market</span></a>
+      <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket
+          market</span></a>
+      <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <body>
+      <h2>Market :</h2>
+      <div *ngFor="let cardName of newCardList | keyvalue" class="card-container">
+        <mat-card *ngFor="let card of cardName.value" class="card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ card.name }}</mat-card-title>
+            <mat-card-subtitle>{{ card.discountRate }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="card.image" alt="Photo of a Shiba Inu">
+          <mat-card-content>Price : {{ card.price }} wei</mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="buyCard(true, card.name, card.id, card.price)">Buy</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <h2>Second hand market :</h2>
+      <div class="card-container">
+        <mat-card *ngFor="let card of marketCardList" class="card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ card.name }}</mat-card-title>
+            <mat-card-subtitle>{{ card.discountRate }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="card.image" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            {{ card.price }}
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="buyCard(false, card.name, card.id, card.price)">Buy</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </body>
+  </mat-sidenav-content>
+</mat-sidenav-container>

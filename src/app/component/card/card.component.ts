@@ -12,22 +12,27 @@ export class CardComponent {
 
   accountAddress = ""
   cardNameList: string[] = [];
-  cardList = new Map<string, any[]>();
+  marketCardList: any[] = [];
+  newCardList = new Map<string, any[]>();
 
   constructor(private smartContract: SmartContractService) {
     this.initAccount();
-    this.listMarketCard();
+    this.listNewCard();
   }
 
   async initAccount(){
     await this.smartContract.getAccounts().then(resp => this.accountAddress = resp[0]);
   }
 
-  async listMarketCard() {
+  async listNewCard() {
     await this.smartContract.getCardName().then(resp => this.cardNameList = resp);
     this.cardNameList.forEach(name => {
-      this.smartContract.listNewCards(name).then(resp => this.cardList.set(name, resp));
+      this.smartContract.listNewCards(name).then(resp => this.newCardList.set(name, resp));
     });
+  }
+
+  async listMarketCard() {
+    await this.smartContract.listMarketCard().then(resp => this.marketCardList = resp);
   }
 
   async buyCard(secondHand: boolean, name: string, id: Bytes, ethValue: number) {

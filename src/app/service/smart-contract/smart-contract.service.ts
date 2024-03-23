@@ -220,6 +220,19 @@ export class SmartContractService {
     },
     {
       "inputs": [],
+      "name": "getTicketPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "getTickets",
       "outputs": [
         {
@@ -351,23 +364,10 @@ export class SmartContractService {
       ],
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "ticketPrice",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
     }
   ]`
 
-  private address = '0x1f15f58D3a1C1ec5cc926a055a7Db4F30318931f';
+  private address = '0x5addb22809b79965df2693CbfA4dF69c34304705';
   private contract: any;
   web3: any;
 
@@ -436,10 +436,6 @@ export class SmartContractService {
     return this.contract.methods.getCards().call({from: address});
   }
 
-  async getAccountTickets(address: string): Promise<any> {
-    return this.contract.methods.getTickets().call({from: address});
-  }
-
   async getCardName(): Promise<any> {
     return this.contract.methods.getCardName().call();
   }
@@ -448,7 +444,27 @@ export class SmartContractService {
     return this.contract.methods.listNewCards(name).call();
   }
 
+  async listMarketCard(): Promise<any> {
+    return this.contract.methods.listMarketCard().call();
+  }
+
   async buyCard(secondHand: boolean, name: string, id: Bytes, address: string, ethValue: number){
     return this.contract.methods.buyCard(secondHand, name, id).send({from: address, value: ethValue});
+  }
+
+  async getAccountTickets(address: string): Promise<any> {
+    return this.contract.methods.getTickets().call({from: address});
+  }
+
+  async listTickets(): Promise<any> {
+    return this.contract.methods.listTickets().call();
+  }
+
+  async getTicketPrice(): Promise<any> {
+    return this.contract.methods.getTicketPrice().call();
+  }
+
+  async buyTicket(type: string, address: string, ethValue: number): Promise<any> {
+    return this.contract.methods.buyTicket(type).send({from: address, value: ethValue})
   }
 }
