@@ -1,25 +1,44 @@
 import { Component } from '@angular/core';
 import { SmartContractService } from '../../service/smart-contract/smart-contract.service';
+import { Bytes } from 'web3';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
 export class CardComponent {
-  private contractAddress: string;
-  private contractABI: any;
-  constructor(private smartContractService: SmartContractService) {
-    this.contractAddress = smartContractService.getContractAddress();
-    this.contractABI = smartContractService.getContractABI();
-   }
-
   opened = false;
   rightSidenavOpened = false;
-  cards = [
-    { title: 'Card 1', subtitle: 'Subtitle 1', description: 'Description of Card 1', image: 'https://via.placeholder.com/150' },
-    { title: 'Card 2', subtitle: 'Subtitle 2', description: 'Description of Card 2', image: 'https://via.placeholder.com/150' },
-    { title: 'Card 3', subtitle: 'Subtitle 3', description: 'Description of Card 3', image: 'https://via.placeholder.com/150' },
-    { title: 'Card 4', subtitle: 'Subtitle 4', description: 'Description of Card 4', image: 'https://via.placeholder.com/150' },
-  ]
+
+  accountAddress = ""
+  cardNameList: string[] = [];
+  marketCardList: any[] = [];
+  newCardList = new Map<string, any[]>();
+
+  constructor(private smartContract: SmartContractService) {
+    this.initAccount();
+    this.listNewCard();
+  }
+
+  async initAccount(){
+    await this.smartContract.getAccounts().then(resp => this.accountAddress = resp[0]);
+  }
+
+  async listNewCard() {
+    await this.smartContract.getCardName().then(resp => this.cardNameList = resp);
+    this.cardNameList.forEach(name => {
+      this.smartContract.listNewCards(name).then(resp => this.newCardList.set(name, resp));
+    });
+  }
+
+  async listMarketCard() {
+    await this.smartContract.listMarketCard().then(resp => this.marketCardList = resp);
+  }
+
+  async buyCard(secondHand: boolean, name: string, id: Bytes, ethValue: number) {
+    await this.smartContract.buyCard(secondHand, name, id, this.accountAddress, ethValue);
+    this.listNewCard();
+    this.listMarketCard();
+  }
  
 }

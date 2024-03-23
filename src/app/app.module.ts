@@ -13,12 +13,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { CardComponent } from './component/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { SmartContractService } from './service/smart-contract/smart-contract.service';
+import { TicketComponent } from './component/ticket/ticket.component';
+import { AboutComponent } from './component/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     CardComponent,
+    TicketComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
