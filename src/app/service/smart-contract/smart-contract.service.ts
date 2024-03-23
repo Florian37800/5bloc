@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Web3 } from 'web3';
+import { Bytes, Web3 } from 'web3';
 
 declare let window: any;
 
@@ -448,30 +448,7 @@ export class SmartContractService {
     return this.contract.methods.listNewCards(name).call();
   }
 
-  async sendTransaction(txObject: any): Promise<string> {
-    if (window.ethereum) {
-      try {
-        const accounts = await this.getAccounts();
-        if (!accounts || accounts.length === 0) {
-          throw new Error('No accounts found');
-        }
-        const from = accounts[0];
-        const transactionHash = await window.ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [{ ...txObject, from }],
-        });
-        return transactionHash;
-      } catch (error) {
-        console.error('Error sending transaction:', error);
-        return '';
-      }
-    } else {
-      console.error('MetaMask not detected');
-      return '';
-    }
-  }
-
-  getCurentChampion(): Promise<any> {
-    return this.contract.methods.getChampion().call();
+  async buyCard(secondHand: boolean, name: string, id: Bytes, address: string, ethValue: number){
+    return this.contract.methods.buyCard(secondHand, name, id).send({from: address, value: ethValue});
   }
 }
