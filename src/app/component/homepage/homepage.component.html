@@ -37,7 +37,7 @@
             </div>
             <h2>My tickets</h2>
             <div>
-              <li *ngFor="let ticket of accountTickets"></li>
+              <li *ngFor="let ticket of accountTickets">{{ticket.description}}</li>
             </div>
             <!-- <button (click)="addToCount()"></button> -->
         </body>

@@ -64,7 +64,13 @@ export class SmartContractService {
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_type",
+          "type": "string"
+        }
+      ],
       "name": "buyTicket",
       "outputs": [],
       "stateMutability": "payable",
@@ -117,11 +123,6 @@ export class SmartContractService {
       "type": "function"
     },
     {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
       "inputs": [
         {
           "internalType": "bytes32",
@@ -140,6 +141,11 @@ export class SmartContractService {
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
       "inputs": [],
@@ -224,14 +230,9 @@ export class SmartContractService {
               "type": "bytes32"
             },
             {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "discountRate",
-              "type": "uint256"
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
             }
           ],
           "internalType": "struct PrivilegeCard.Ticket[]",
@@ -340,6 +341,19 @@ export class SmartContractService {
     },
     {
       "inputs": [],
+      "name": "listTickets",
+      "outputs": [
+        {
+          "internalType": "string[]",
+          "name": "",
+          "type": "string[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "ticketPrice",
       "outputs": [
         {
@@ -353,7 +367,7 @@ export class SmartContractService {
     }
   ]`
 
-  private address = '0x89F5B7ee5e45381511A35F2720fcCF010F2205A8';
+  private address = '0x1f15f58D3a1C1ec5cc926a055a7Db4F30318931f';
   private contract: any;
   web3: any;
 
@@ -424,6 +438,14 @@ export class SmartContractService {
 
   async getAccountTickets(address: string): Promise<any> {
     return this.contract.methods.getTickets().call({from: address});
+  }
+
+  async getCardName(): Promise<any> {
+    return this.contract.methods.getCardName().call();
+  }
+
+  async listNewCards(name: string): Promise<any> {
+    return this.contract.methods.listNewCards(name).call();
   }
 
   async sendTransaction(txObject: any): Promise<string> {

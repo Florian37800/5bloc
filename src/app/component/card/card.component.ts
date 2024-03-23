@@ -6,15 +6,23 @@ import { SmartContractService } from '../../service/smart-contract/smart-contrac
   styleUrl: './card.component.css'
 })
 export class CardComponent {
-  private contractAddress: string;
-  private contractABI: any;
-  constructor(private smartContractService: SmartContractService) {
-    this.contractAddress = smartContractService.getContractAddress();
-    this.contractABI = smartContractService.getContractABI();
-   }
-
   opened = false;
   rightSidenavOpened = false;
+
+  cardNameList: string[] = [];
+  cardList = new Map<string, any[]>();
+
+  constructor(private smartContract: SmartContractService) {
+    this.listMarketCard()
+  }
+
+  async listMarketCard() {
+    await this.smartContract.getCardName().then(resp => this.cardNameList = resp);
+    this.cardNameList.forEach(name => {
+      this.smartContract.listNewCards(name).then(resp => this.cardList.set(name, resp));
+    });
+  }
+
   cards = [
     { title: 'Card 1', subtitle: 'Subtitle 1', description: 'Description of Card 1', image: 'https://via.placeholder.com/150' },
     { title: 'Card 2', subtitle: 'Subtitle 2', description: 'Description of Card 2', image: 'https://via.placeholder.com/150' },

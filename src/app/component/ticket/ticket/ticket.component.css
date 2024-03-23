@@ -1,0 +1,31 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-sidenav-container {
+    height: calc(250vh - 160vh);
+  }
+  .left-sidenav {
+    width: 200px;
+    background-color: white;
+  }
+  .sidenav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+}
+
+.sidenav-link mat-icon {
+    margin-right: 10px;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -15px; 
+  }
+  
+  .card {
+    width: calc(25% - 30px); 
+    margin: 15px;  
+  }
+  
