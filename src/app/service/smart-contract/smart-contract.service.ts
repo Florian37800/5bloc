@@ -467,4 +467,8 @@ export class SmartContractService {
   async buyTicket(type: string, address: string, ethValue: number): Promise<any> {
     return this.contract.methods.buyTicket(type).send({from: address, value: ethValue})
   }
+
+  async useTicket(id: Bytes, address: string): Promise<any>{
+    return this.contract.methods.useTicket(id).send({from: address})
+  }
 }

@@ -1,44 +1,57 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-        <mat-icon>train</mat-icon><span>RailRoad</span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
-        <mat-list>
-            <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
-            <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card Market</span></a>
-            <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket Market</span></a>
-            <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
-        </mat-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <body>
-            <h1>Welcome</h1>
-            <p>Wallet address : {{accountAddress}}</p>
-            <p>Wallet balance : {{accountBalance}} eth.</p>
-            <h2>My cards :</h2>
-            <div class="card-container">
-                <mat-card *ngFor="let card of accountCards" class="card">
-                  <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{ card.name }}</mat-card-title>
-                    <mat-card-subtitle>{{ card.discountRate }}%</mat-card-subtitle>
-                  </mat-card-header>
-                  <img mat-card-image [src]="card.image" alt="Photo of a Shiba Inu">
-                  <mat-card-content>
-                    {{ card.description }}
-                  </mat-card-content>
-                  <mat-card-actions>
-                    <button mat-button>Buy</button>
-                  </mat-card-actions>
-                </mat-card>
-            </div>
-            <h2>My tickets</h2>
-            <div>
-              <li *ngFor="let ticket of accountTickets">{{ticket.description}}</li>
-            </div>
-        </body>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <mat-toolbar-row>
+    <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+    <mat-icon>train</mat-icon><span>RailRoad</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
+    <mat-list>
+      <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
+      <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card
+          Market</span></a>
+      <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket
+          Market</span></a>
+      <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <body>
+      <h1>Welcome</h1>
+      <p>Wallet address : {{accountAddress}}</p>
+      <p>Wallet balance : {{accountBalance}} eth.</p>
+      <h2>My cards :</h2>
+      <div class="card-container">
+        <mat-card *ngFor="let card of accountCards" class="card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ card.name }}</mat-card-title>
+            <mat-card-subtitle>{{ card.discountRate }}%</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="card.image" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            {{ card.description }}
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Buy</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <h2>My tickets</h2>
+      <div>
+        <div class="card-container">
+          <mat-card *ngFor="let ticket of accountTickets" class="card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{ ticket.description }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions>
+              <button mat-button (click)="useTicket(ticket.id)">Use</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </body>
+  </mat-sidenav-content>
+</mat-sidenav-container>

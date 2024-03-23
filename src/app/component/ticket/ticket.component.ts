@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SmartContractService } from '../../../service/smart-contract/smart-contract.service';
+import { SmartContractService } from '../../service/smart-contract/smart-contract.service';
 
 @Component({
   selector: 'app-ticket',

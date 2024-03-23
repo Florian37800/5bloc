@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { CardComponent } from './component/card/card.component';
-import { TicketComponent } from './component/ticket/ticket/ticket.component';
+import { TicketComponent } from './component/ticket/ticket.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'homepage', pathMatch:'full'},

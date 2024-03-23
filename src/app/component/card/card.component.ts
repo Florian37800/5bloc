@@ -37,6 +37,8 @@ export class CardComponent {
 
   async buyCard(secondHand: boolean, name: string, id: Bytes, ethValue: number) {
     await this.smartContract.buyCard(secondHand, name, id, this.accountAddress, ethValue);
+    this.listNewCard();
+    this.listMarketCard();
   }
  
 }
