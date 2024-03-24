@@ -10,31 +10,6 @@ export class SmartContractService {
 
   private abi = `[
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "ticketId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "buyer",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "discountRate",
-          "type": "uint256"
-        }
-      ],
-      "name": "TicketPurchased",
-      "type": "event"
-    },
-    {
       "inputs": [
         {
           "internalType": "bool",
@@ -130,6 +105,42 @@ export class SmartContractService {
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "_deployer",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "ticketId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "discountRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "TicketPurchased",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes32",
           "name": "_ticketId",
           "type": "bytes32"
@@ -146,11 +157,6 @@ export class SmartContractService {
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
     },
     {
       "inputs": [],
@@ -210,6 +216,19 @@ export class SmartContractService {
           "internalType": "struct PrivilegeCard.Card[]",
           "name": "",
           "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDeployer",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
         }
       ],
       "stateMutability": "view",
@@ -387,7 +406,7 @@ export class SmartContractService {
     }
   ]`
 
-  private address = '0x049EDE8507334FA46F837eC1430B17D4Fe18723c';
+  private address = '0x1627F828B7b8186068152a762a21eDa6529AB084';
   private contract: any;
   web3: any;
 
@@ -434,6 +453,10 @@ export class SmartContractService {
     }
   }
 
+  async getDeployer(): Promise<string>{
+    return this.contract.methods.getDeployer().call();
+  }
+
   async getBalance(address: string): Promise<string> {
     if (window.ethereum) {
       try {
@@ -454,6 +477,10 @@ export class SmartContractService {
 
   async getAccountCards(address: string): Promise<any> {
     return this.contract.methods.getCards().call({from: address});
+  }
+
+  async createCard(name: string, price: number, image: string, description: string, discountRate: number){
+    return this.contract.methods.createCard(name, price, image, description, discountRate);
   }
 
   async getCardName(): Promise<any> {
