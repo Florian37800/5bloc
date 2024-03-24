@@ -35,6 +35,10 @@ export class HomepageComponent {
     await this.smartContract.getAccountTickets(this.accountAddress).then(reponse => this.accountTickets = reponse);
   }
 
+  async sellCard(id: Bytes, price: number){
+    await this.smartContract.sellCard(id, price, this.accountAddress).then();
+  }
+
   async useTicket(id: Bytes){
     await this.smartContract.useTicket(id, this.accountAddress);
     this.getAccountTickets();

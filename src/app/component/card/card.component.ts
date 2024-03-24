@@ -18,6 +18,7 @@ export class CardComponent {
   constructor(private smartContract: SmartContractService) {
     this.initAccount();
     this.listNewCard();
+    this.listMarketCard();
   }
 
   async initAccount(){

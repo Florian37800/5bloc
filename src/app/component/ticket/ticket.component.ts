@@ -12,6 +12,7 @@ export class TicketComponent {
 
   accountAddress: string = "";
   ticketPrice: number = 0;
+  discountPrice: number = 0;
   ticketList: string[] = [];
 
   constructor(private smartContract: SmartContractService){
@@ -21,7 +22,8 @@ export class TicketComponent {
   async initTicket(){
     await this.smartContract.getAccounts().then(resp => this.accountAddress = resp[0]);
     await this.smartContract.listTickets().then(resp => this.ticketList = resp);
-    await this.smartContract.getTicketPrice().then(resp => this.ticketPrice = resp);
+    await this.smartContract.getTicketPrice().then(resp => this.ticketPrice = Number(resp));
+    this.smartContract.getMaxDiscountRate(this.accountAddress).then(resp => this.discountPrice = this.ticketPrice - this.ticketPrice * (Number(resp) / 100));
   }
 
   async buyTicket(type: string){

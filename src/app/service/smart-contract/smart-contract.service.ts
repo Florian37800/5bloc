@@ -115,6 +115,11 @@ export class SmartContractService {
           "internalType": "bytes32",
           "name": "_id",
           "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
         }
       ],
       "name": "sellCard",
@@ -170,6 +175,11 @@ export class SmartContractService {
               "internalType": "bytes32",
               "name": "id",
               "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
             },
             {
               "internalType": "string",
@@ -268,6 +278,11 @@ export class SmartContractService {
               "type": "bytes32"
             },
             {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
               "internalType": "string",
               "name": "name",
               "type": "string"
@@ -319,6 +334,11 @@ export class SmartContractService {
               "type": "bytes32"
             },
             {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
               "internalType": "string",
               "name": "name",
               "type": "string"
@@ -367,7 +387,7 @@ export class SmartContractService {
     }
   ]`
 
-  private address = '0x5addb22809b79965df2693CbfA4dF69c34304705';
+  private address = '0x049EDE8507334FA46F837eC1430B17D4Fe18723c';
   private contract: any;
   web3: any;
 
@@ -448,8 +468,16 @@ export class SmartContractService {
     return this.contract.methods.listMarketCard().call();
   }
 
-  async buyCard(secondHand: boolean, name: string, id: Bytes, address: string, ethValue: number){
+  async buyCard(secondHand: boolean, name: string, id: Bytes, address: string, ethValue: number): Promise<any>{
     return this.contract.methods.buyCard(secondHand, name, id).send({from: address, value: ethValue});
+  }
+
+  async sellCard(id: Bytes, price: number, address: string): Promise<any>{
+    return this.contract.methods.sellCard(id, price).send({from: address});
+  }
+
+  async getMaxDiscountRate(address: string): Promise<any>{
+    return this.contract.methods.getMaxDiscountRate().call({from: address});
   }
 
   async getAccountTickets(address: string): Promise<any> {
