@@ -25,6 +25,18 @@ export class TicketComponent {
   }
 
   async buyTicket(type: string){
-    await this.smartContract.buyTicket(type, this.accountAddress, this.ticketPrice);
+    const isConfirmed = confirm("Confirmez-vous l'achat de ce ticket ?");
+
+    if (isConfirmed) {
+      try {
+        await this.smartContract.buyTicket(type, this.accountAddress, this.ticketPrice);
+        
+        alert("L'achat du ticket est validé !");
+      } catch (error) {
+        console.error("Erreur lors de la transaction : ", error);
+      }
+    } else {
+      console.log('Transaction annulée');
+    }
   }
 }

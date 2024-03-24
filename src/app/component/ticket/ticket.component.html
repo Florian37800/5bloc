@@ -9,12 +9,10 @@
     <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
         <mat-list>
             <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
-            <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card
-                    Market</span></a>
-            <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket
-                    Market</span></a>
-            <a mat-list-item routerLink="/about"
-                class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
+            <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card Market</span></a>
+            <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket Market</span></a>
+            <a mat-list-item routerLink="/administrator" class="sidenav-link"><mat-icon>settings</mat-icon><span>Admin</span></a>
+            <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -27,6 +25,7 @@
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>{{ ticket }}</mat-card-title>
                     </mat-card-header>
+                    <img mat-card-image src="https://cdn-icons-png.flaticon.com/512/494/494724.png">
                         <mat-card-content>Price : {{ ticketPrice }} wei</mat-card-content>
                     <mat-card-actions>
                         <button mat-button (click)="buyTicket(ticket)">Buy</button>
