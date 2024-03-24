@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+      <mat-icon>train</mat-icon><span>RailRoad</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
+      <mat-list>
+        <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
+        <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card Market</span></a>
+        <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket Market</span></a>
+        <a mat-list-item routerLink="/administrator" class="sidenav-link"><mat-icon>settings</mat-icon><span>Admin</span></a>
+        <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <body>
+        <div class="container">
+        <h2 class="title">About us</h2>
+            <img class="image-content" src="https://th.bing.com/th/id/OIG4.jLKY.Kux4aOf24R8eOTZ?pid=ImgGn">
+                <mat-card class="card-content">
+                    <h3>
+                        Founded in 2024, RailRoad is a company revolutionizing the train ticketing industry by integrating cryptocurrency. 
+                        Offering a seamless experience, customers can purchase train tickets using various cryptocurrencies. 
+                        With a focus on convenience and security, RailRoad's platform ensures swift transactions while leveraging the decentralized nature of blockchain technology. 
+                        By embracing cryptocurrencies, RailRoad aims to provide a modern and efficient ticketing solution, catering to tech-savvy travelers looking for alternative payment methods. 
+                        This innovative approach positions RailRoad at the forefront of the transportation sector, reshaping the way people buy train tickets.
+                    </h3>
+                </mat-card>
+        </div>
+      </body>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
