@@ -14,6 +14,8 @@ export class HomepageComponent {
   accountBalance = "";
   accountCards: any[] = [];
   accountTickets: any[] = [];
+  marketCardList: any[] = [];
+  newCardList = new Map<string, any[]>();
 
   constructor(private smartContract: SmartContractService) {
     this.initMetamask();
