@@ -103,13 +103,7 @@ export class SmartContractService {
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_deployer",
-          "type": "address"
-        }
-      ],
+      "inputs": [],
       "stateMutability": "nonpayable",
       "type": "constructor"
     },
@@ -406,7 +400,7 @@ export class SmartContractService {
     }
   ]`
 
-  private address = '0x3D3bafA3A420ECe10774571Ce7E86BE46949940B';
+  private address = '0x990F1EAF9Bb95Dc65Dca5b442367A6C01C9F8DEC';
   private contract: any;
   web3: any;
 
