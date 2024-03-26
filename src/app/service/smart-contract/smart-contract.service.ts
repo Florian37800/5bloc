@@ -406,7 +406,7 @@ export class SmartContractService {
     }
   ]`
 
-  private address = '0x1627F828B7b8186068152a762a21eDa6529AB084';
+  private address = '0x3D3bafA3A420ECe10774571Ce7E86BE46949940B';
   private contract: any;
   web3: any;
 
@@ -479,8 +479,8 @@ export class SmartContractService {
     return this.contract.methods.getCards().call({from: address});
   }
 
-  async createCard(name: string, price: number, image: string, description: string, discountRate: number){
-    return this.contract.methods.createCard(name, price, image, description, discountRate);
+  async createCard(name: string, price: number, image: string, description: string, discountRate: number, address: string): Promise<any>{
+    return this.contract.methods.createCard(name, price, image, description, discountRate).send({from: address});
   }
 
   async getCardName(): Promise<any> {
