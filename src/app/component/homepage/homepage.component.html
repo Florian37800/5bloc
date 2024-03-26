@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-    <mat-icon>train</mat-icon><span>RailRoad</span>
+    <mat-icon>train</mat-icon><span>SupRailRoad & Co</span> 
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container>
@@ -18,7 +18,7 @@
 
     <body>
       <div class="container">
-      <h1 class="title" style="color: blueviolet; font-style: oblique;">Welcome on RailRoad</h1>
+      <h1 class="title" style="color: blueviolet; font-style: oblique;">Welcome on SupRailRoad & Co</h1>
       <img class="image-content" src="https://th.bing.com/th/id/OIG4.jLKY.Kux4aOf24R8eOTZ?pid=ImgGn">
       <mat-card class="card-content">
         <p>Wallet address : {{accountAddress}}</p>
@@ -32,7 +32,8 @@
             <mat-card-title>{{ card.name }}</mat-card-title>
             <mat-card-subtitle>{{ card.discountRate }}%</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="https://cdn-icons-png.freepik.com/512/1314/1314576.png" style="width: 200px; height: 200px;">
+          <img mat-card-image *ngIf="newCardList && newCardList.get('categorie1')"  src="https://cdn-icons-png.freepik.com/512/1314/1314576.png" style="width: 200px; height: 200px;">
+          <img mat-card-image *ngIf="marketCardList" src="https://static.vecteezy.com/system/resources/previews/021/136/937/original/train-ticket-icon-vector.jpg" style="width: 200px; height: 200px;">
           <mat-card-content>
             {{ card.description }}
           </mat-card-content>
