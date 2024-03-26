@@ -17,6 +17,10 @@ import { TicketComponent } from './component/ticket/ticket.component';
 import { AboutComponent } from './component/about/about.component';
 import { TransactionConfirmationComponent } from './component/transaction-confirmation/transaction-confirmation.component';
 import { AdministratorComponent } from './component/administrator/administrator.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { AdministratorComponent } from './component/administrator/administrator.
     MatListModule,
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
     
   ],
   providers: [

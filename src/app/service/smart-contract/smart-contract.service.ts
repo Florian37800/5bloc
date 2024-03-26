@@ -103,13 +103,7 @@ export class SmartContractService {
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_deployer",
-          "type": "address"
-        }
-      ],
+      "inputs": [],
       "stateMutability": "nonpayable",
       "type": "constructor"
     },
@@ -406,7 +400,7 @@ export class SmartContractService {
     }
   ]`
 
-  private address = '0x1627F828B7b8186068152a762a21eDa6529AB084';
+  private address = '0x990F1EAF9Bb95Dc65Dca5b442367A6C01C9F8DEC';
   private contract: any;
   web3: any;
 
@@ -479,8 +473,8 @@ export class SmartContractService {
     return this.contract.methods.getCards().call({from: address});
   }
 
-  async createCard(name: string, price: number, image: string, description: string, discountRate: number){
-    return this.contract.methods.createCard(name, price, image, description, discountRate);
+  async createCard(name: string, price: number, image: string, description: string, discountRate: number, address: string): Promise<any>{
+    return this.contract.methods.createCard(name, price, image, description, discountRate).send({from: address});
   }
 
   async getCardName(): Promise<any> {

@@ -1,23 +1,53 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-      <mat-icon>train</mat-icon><span>SupRailRoad & Co</span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
-      <mat-list>
-        <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
-        <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card Market</span></a>
-        <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket Market</span></a>
-        <a mat-list-item routerLink="/administrator" class="sidenav-link"><mat-icon>settings</mat-icon><span>Admin</span></a>
-        <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
-      </mat-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <body>
-        <p>Coucou</p>
-        <button mat-button (click)="createCard('Standard', 20, 'image', 'descr', 25)">Create</button>
-      </body>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <mat-toolbar-row>
+    <button mat-icon-button class="btn" style="color:white;" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+    <mat-icon>train</mat-icon><span>SupRailRoad & Co</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side" class="left-sidenav">
+    <mat-list>
+      <a mat-list-item routerLink="/homepage" class="sidenav-link"><mat-icon>home</mat-icon><span>Home</span></a>
+      <a mat-list-item routerLink="/card" class="sidenav-link"><mat-icon>card_travel</mat-icon><span>Card
+          Market</span></a>
+      <a mat-list-item routerLink="/ticket" class="sidenav-link"><mat-icon>card_giftcard</mat-icon><span>Ticket
+          Market</span></a>
+      <a mat-list-item routerLink="/administrator"
+        class="sidenav-link"><mat-icon>settings</mat-icon><span>Admin</span></a>
+      <a mat-list-item routerLink="/about" class="sidenav-link"><mat-icon>help_outline</mat-icon><span>About</span></a>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <body>
+      <form #createForm="ngForm" (ngSubmit)="createCard(createForm.value.name, createForm.value.price, createForm.value.image, createForm.value.description, createForm.value.discountRate)">
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Name" name="name" ngModel required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Price" name="price" ngModel required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Image URL" name="image" ngModel required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <textarea matInput placeholder="Description" name="description" ngModel required></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Discount Rate" name="discountRate" ngModel required>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit">Create</button>
+      </form>
+    </body>
+  </mat-sidenav-content>
+</mat-sidenav-container>
