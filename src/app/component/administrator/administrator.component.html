@@ -20,34 +20,32 @@
   <mat-sidenav-content>
 
     <body>
-      <form #createForm="ngForm" (ngSubmit)="createCard(createForm.value.name, createForm.value.price, createForm.value.image, createForm.value.description, createForm.value.discountRate)">
-        <div>
+      <div class="form-container">
+        <form #createForm="ngForm" (ngSubmit)="createCard(createForm.value.name, createForm.value.price, createForm.value.image, createForm.value.description, createForm.value.discountRate)">
           <mat-form-field>
             <input matInput placeholder="Name" name="name" ngModel required>
           </mat-form-field>
-        </div>
-        <div>
+          
           <mat-form-field>
             <input matInput type="number" placeholder="Price" name="price" ngModel required>
           </mat-form-field>
-        </div>
-        <div>
+          
           <mat-form-field>
             <input matInput placeholder="Image URL" name="image" ngModel required>
           </mat-form-field>
-        </div>
-        <div>
+          
           <mat-form-field>
             <textarea matInput placeholder="Description" name="description" ngModel required></textarea>
           </mat-form-field>
-        </div>
-        <div>
+          
           <mat-form-field>
             <input matInput type="number" placeholder="Discount Rate" name="discountRate" ngModel required>
           </mat-form-field>
-        </div>
-        <button mat-raised-button color="primary" type="submit">Create</button>
-      </form>
+          
+          <button mat-raised-button color="primary" type="submit">Create</button>
+        </form>
+      </div>
     </body>
+    
   </mat-sidenav-content>
 </mat-sidenav-container>
